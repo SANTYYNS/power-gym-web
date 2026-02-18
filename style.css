@@ -332,3 +332,72 @@ footer {
     font-size: 1.2rem;
     color: #ccc;
 }
+
+/* =========================================
+   MODO CELULAR (RESPONSIVE DESIGN)
+   ========================================= */
+@media screen and (max-width: 768px) {
+
+    /* 1. Ajustar el contenedor principal */
+    body {
+        overflow-x: hidden; /* Evita que la pantalla se mueva a los lados */
+    }
+
+    /* 2. Cabecera y Menú */
+    header {
+        flex-direction: column; /* Pone el logo arriba y menú abajo */
+        padding: 15px;
+        height: auto; /* Altura automática */
+    }
+
+    nav ul {
+        flex-direction: column; /* Pone los links uno debajo de otro */
+        padding: 0;
+        gap: 15px; /* Espacio entre links */
+        margin-top: 20px;
+    }
+
+    /* 3. Textos Gigantes */
+    h1 {
+        font-size: 2.5rem; /* Reduce el tamaño del título principal */
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    /* 4. Secciones Principales */
+    main {
+        margin: 20px; /* Reduce los márgenes laterales */
+        width: auto;
+    }
+
+    .hero-content {
+        padding: 0 20px; /* Da aire a los lados */
+    }
+
+    /* 5. Planes (Tarjetas) */
+    .planes-container {
+        flex-direction: column; /* Pone un plan debajo del otro */
+        align-items: center;
+    }
+
+    .plan-card {
+        width: 100%; /* Que ocupe todo el ancho disponible */
+        max-width: 350px; /* Pero que no se vea gigante */
+        margin-bottom: 20px;
+    }
+
+    /* 6. Catálogo (Grid) */
+    .grid-productos {
+        grid-template-columns: 1fr; /* Una sola columna en celular */
+        padding: 0 20px;
+    }
+    
+    /* 7. Footer */
+    footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+}
