@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscripción | Power Gym</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <img src="img/logo png.jpg" alt="LOGO POWER GYM" style="max-width: 100px;">
+        <h1>CENTRO FITNESS POWER GYM</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="formulario.html">Inscripción</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="contenedor-formulario">
+        <h2 class="titulo-seccion">Ficha Médica y de Inscripción <span>Power Gym</span></h2>
+        
+        <form action="#modal-exito" method="POST" class="form-powergym">
+            
+            <fieldset class="fset">
+                <legend class="flegend">1. Datos Personales</legend>
+                <div class="form-grid-2">
+                    <div class="field">
+                        <label for="nombreCompleto">Nombre Completo:</label>
+                        <input type="text" id="nombreCompleto" name="nombreCompleto" required>
+                    </div>
+                    
+                    <div class="field">
+                        <label for="telefono">Teléfono / WhatsApp:</label>
+                        <input type="tel" id="telefono" name="telefono" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="tipoDoc">Tipo de Documento:</label>
+                        <select id="tipoDoc" name="tipoDoc" required>
+                            <option value="" disabled selected>Selecciona...</option>
+                            <option value="CC">Cédula de Ciudadanía</option>
+                            <option value="TI">Tarjeta de Identidad</option>
+                            <option value="CE">Cédula de Extranjería</option>
+                            <option value="Pasaporte">Pasaporte</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="numDoc">Número de Documento:</label>
+                        <input type="number" id="numDoc" name="numDoc" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+                        <input type="date" id="fechaInicio" name="fechaNacimiento" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="fechaInicio">Fecha de Inicio:</label>
+                        <input type="date" id="fechaInicio" name="fechaInicio" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="edad">Edad:</label>
+                        <input type="number" id="edad" name="edad" min="12" max="100" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="genero">Género:</label>
+                        <select id="genero" name="genero" required>
+                            <option value="" disabled selected>Selecciona...</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="femenino">Femenino</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="fset">
+                <legend class="flegend">2. Perfil Físico</legend>
+                <div class="form-grid-2">
+                    
+                    <div class="field">
+                        <label for="altura">Altura (en metros):</label>
+                        <input type="number" id="altura" name="altura" step="0.01" min="1.0" max="2.50" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="peso">Peso (en Kilogramos):</label>
+                        <input type="number" id="peso" name="peso" step="1" min="30" max="200" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="imc">Índice de Masa Corporal (IMC):</label>
+                        <input type="text" id="imc" name="imc" placeholder="Se calculará automáticamente..." readonly style="background-color: #333; cursor: not-allowed; font-weight: bold; color: #ce0000;">
+                    </div>
+                </div>
+
+                <div class="field" style="margin-top: 15px;">
+                    <label for="lesiones">Historial Médico (Enfermedades, Lesiones, Cirugías):</label>
+                    <textarea id="lesiones" name="lesiones" rows="4" placeholder="Escribe aquí si presentas algun historial medico especifico o algun tipo de lesion" style="width: 100%; padding: 10px; background-color: #222; color: #fff; border: 1px solid #555; border-radius: 5px; font-family: 'Roboto', sans-serif; resize: vertical;"></textarea>
+                </div>
+            </fieldset>
+
+            <button type="submit" class="btn-submit">FINALIZAR INSCRIPCIÓN</button>
+        </form>
+    </main>
+
+    <div id="modal-exito" class="modal">
+        <a href="#" class="modal-backdrop"></a>
+        
+        <div class="modal-card">
+            <h3 style="color: #ce0000; font-family: 'Oswald', sans-serif;">¡Inscripción Exitosa!</h3>
+            <p>Tus datos han sido registrados. Te esperamos en el gimnasio para comenzar a mutar.</p>
+            <div class="modal-actions">
+                <a href="#" class="btn-cerrar-modal">Cerrar</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. Seleccionamos los elementos del HTML y los guardamos en variables constantes
+        const inputPeso = document.getElementById('peso');
+        const inputAltura = document.getElementById('altura');
+        const inputImc = document.getElementById('imc');
+
+        // 2. Función que encapsula la lógica matemática
+        const calcularIMC = () => {
+            // Convertimos el texto de los inputs a números decimales (parseFloat)
+            let peso = parseFloat(inputPeso.value);
+            let altura = parseFloat(inputAltura.value);
+
+            // Validamos que los números sean mayores a 0 para no causar errores matemáticos
+            if (peso > 0 && altura > 0) {
+                // Fórmula universal del IMC: Peso (kg) dividido entre Altura al cuadrado (m2)
+                let imc = peso / (altura * altura);
+                
+                // Mostramos el resultado con solo 2 decimales usando toFixed(2)
+                inputImc.value = imc.toFixed(2);
+                
+                // EXTRA: Agregamos una clasificación visual al resultado
+                if(imc < 18.5) inputImc.value += " (Bajo peso)";
+                else if(imc >= 18.5 && imc <= 24.9) inputImc.value += " (Peso normal)";
+                else if(imc >= 25 && imc <= 29.9) inputImc.value += " (Sobrepeso)";
+                else inputImc.value += " (Obesidad)";
+            } else {
+                inputImc.value = ""; // Si borran los datos, limpiamos el campo
+            }
+        };
+
+        // 3. Agregamos un "Escuchador de Eventos" a los inputs
+        // 'input' significa que la función se ejecuta cada vez que el usuario teclea algo
+        inputPeso.addEventListener('input', calcularIMC);
+        inputAltura.addEventListener('input', calcularIMC);
+    </script>
+
+</body>
+</html>
